@@ -1,0 +1,8 @@
+# PyCharm / IntelliJ
+.idea/
+*.iml
+*.iws
+
+# VsCode
+
+.vscode/
