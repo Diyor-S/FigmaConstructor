@@ -9,6 +9,8 @@ from sqlalchemy.ext.asyncio import (
 from validators import AsyncURLValidator
 
 if TYPE_CHECKING:
+    from typing import AsyncGenerator
+
     from sqlalchemy import URL
     from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession
 
@@ -23,9 +25,11 @@ class DBManager:
     def __init__(self, url: str) -> None:
         self.url: "URL" = url
         self.engine: "AsyncEngine" = create_async_engine(self.url)
+        self.session_factory: async_sessionmaker["AsyncSession"] = async_sessionmaker(
+            bind=self.engine,
+            expire_on_commit=False
+        )
 
-    async def session_factory(self):
-        pass
-
-    async def get_session(self):
-        pass
+    async def get_session(self) -> AsyncGenerator["AsyncSession", None]:
+        async with self.session_factory() as session:
+            yield session
