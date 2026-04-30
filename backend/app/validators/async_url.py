@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 from sqlalchemy import make_url
 from sqlalchemy.exc import ArgumentError
 
-from core.custom_exceptions import (
+from app.core.custom_exceptions import (
     InstanceExpectedError,
     AsyncDialectExpected,
 )

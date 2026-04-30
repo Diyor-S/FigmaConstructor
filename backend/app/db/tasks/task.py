@@ -4,9 +4,10 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Enum as SQLAlchemyEnum
 from sqlalchemy import String, ForeignKey
 
-from db.base import Base
-from db.mixins import IntIdMixin
+from app.db.base import Base
+from app.db.mixins import IntIdMixin
 from .status import TaskStatus
+
 
 class Task(IntIdMixin, Base):
     """

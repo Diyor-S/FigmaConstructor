@@ -6,8 +6,8 @@ from sqlalchemy.ext.asyncio import (
     async_sessionmaker,
 )
 
-from validators import AsyncURLValidator
-from core.config import settings
+from app.validators import AsyncURLValidator
+from app.core.config import settings
 
 if TYPE_CHECKING:
     from typing import AsyncGenerator
@@ -35,6 +35,7 @@ class DBManager:
     async def get_session(self) -> "AsyncGenerator[AsyncSession, None]":
         async with self.session_factory() as session:
             yield session
+
 
 db = DBManager(
     url=str(settings.db.url),
