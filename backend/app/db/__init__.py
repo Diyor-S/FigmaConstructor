@@ -1,10 +1,11 @@
 __all__ = [
     "DBManager", "db",
 
+    "Task",
     "Base",
 ]
 
 from .base import DBManager, db
 
-from .base import Base
 from .tasks import Task
+from .base import Base

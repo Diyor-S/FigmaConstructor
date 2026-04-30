@@ -11,6 +11,7 @@ class Run(BaseModel):
     host: str = "127.0.0.1"
     port: int = 8000
 
+
 class DatabaseConfig(BaseModel):
     """
     params:
@@ -19,6 +20,7 @@ class DatabaseConfig(BaseModel):
     """
     url: PostgresDsn
     echo: bool = True
+
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
@@ -31,5 +33,6 @@ class Settings(BaseSettings):
 
     run: Run = Field(default_factory=Run)
     db: DatabaseConfig = Field(default_factory=DatabaseConfig)
+
 
 settings = Settings()
