@@ -7,3 +7,4 @@ __all__ = [
 from .base import DBManager, db
 
 from .base import Base
+from .tasks import Task
