@@ -31,11 +31,11 @@ class Task(IntIdMixin, Base):
     __tablename__ = "tasks"
 
     parent_id: Mapped[Optional[int]] = mapped_column(ForeignKey("tasks.id"))
-    parent_task: Mapped["Task"] = relationship(back_populates="sub_tasks", remote_side=lambda: Task.id)
+    parent_task: Mapped[Optional["Task"]] = relationship(back_populates="sub_tasks", remote_side=lambda: Task.id)
 
     status: Mapped[SQLAlchemyEnum] = mapped_column(SQLAlchemyEnum(TaskStatus), default=TaskStatus.TODO, nullable=False)
 
     name: Mapped[str] = mapped_column(String(30))
     short_description: Mapped[str] = mapped_column(String(30))
     
-    sub_tasks: Mapped[List["Task"]] = relationship(back_populates="parent_task") 
+    sub_tasks: Mapped[List["Task"]] = relationship(back_populates="parent_task")
